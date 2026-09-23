@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Página Simple</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav container">
+        <div class="brand">MiWeb</div>
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero container">
+        <div class="hero-text">
+          <p class="eyebrow">Bienvenido</p>
+          <h1>Diseño moderno!!</h1>
+          <p id="mensaje" class="subtitle">
+            Esta es una página web sencilla creada con HTML, CSS y JavaScript.
+          </p>
+          <div class="actions">
+            <button id="cambiarMensaje" class="primary-btn">Cambiar mensaje</button>
+            <button id="temaBtn" class="secondary-btn">Cambiar tema</button>
+          </div>
+          <p id="clock" class="clock"></p>
+        </div>
+        <div class="hero-card">
+          <div class="card-icon">★</div>
+          <h2>Proyecto</h2>
+          <p>Listo para usar como base para tu sitio personal o landing page.</p>
+        </div>
+      </section>
+
+      <section id="servicios" class="features container">
+        <h2>Características</h2>
+        <div class="feature-grid">
+          <article class="feature-item">
+            <h3>Responsive</h3>
+            <p>Se adapta a dispositivos móviles y desktop.</p>
+          </article>
+          <article class="feature-item">
+            <h3>Claro</h3>
+            <p>Diseño visual limpio y fácil de entender.</p>
+          </article>
+          <article class="feature-item">
+            <h3>Interactivo</h3>
+            <p>Incluye pequeños efectos con JavaScript.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contacto" class="site-footer">
+      <p>© 2026 MiWeb</p>
+    </footer>
+
+    <div class="analog-clock-wrapper" aria-label="Reloj analógico">
+      <div class="analog-clock">
+        <span class="hand hour"></span>
+        <span class="hand minute"></span>
+        <span class="hand second"></span>
+        <span class="center-dot"></span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
