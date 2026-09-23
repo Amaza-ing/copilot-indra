@@ -23,10 +23,6 @@ temaBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark');
 });
 
-// Documenta la función actualizarHora para mostrar la hora actual en formato de 12 horas y actualizar las manecillas del reloj analógico.
-/**
- * Actualiza la hora mostrada en el reloj y las manecillas del reloj analógico.
- */
 function actualizarHora() {
   const ahora = new Date();
   clock.textContent = ahora.toLocaleTimeString('es-ES', {
