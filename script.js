@@ -1,48 +1,52 @@
-const mensaje = document.getElementById('mensaje');
-const cambiarMensajeBtn = document.getElementById('cambiarMensaje');
-const temaBtn = document.getElementById('temaBtn');
-const clock = document.getElementById('clock');
-const hourHand = document.querySelector('.hour');
-const minuteHand = document.querySelector('.minute');
-const secondHand = document.querySelector('.second');
+const messageElement = document.getElementById('message');
+const changeMessageButton = document.getElementById('changeMessageButton');
+const themeButton = document.getElementById('themeButton');
+const clockElement = document.getElementById('clock');
+const hourHand = document.querySelector('.hour-hand');
+const minuteHand = document.querySelector('.minute-hand');
+const secondHand = document.querySelector('.second-hand');
 
-const mensajes = [
+const messages = [
   'Esta es una página web sencilla creada con HTML, CSS y JavaScript.',
   'Puedes personalizar esta base para tu portafolio, landing page o negocio.',
   'Cambia colores, textos y secciones según tus necesidades.'
 ];
 
-let indiceMensaje = 0;
+let messageIndex = 0;
 
-cambiarMensajeBtn.addEventListener('click', () => {
-  indiceMensaje = (indiceMensaje + 1) % mensajes.length;
-  mensaje.textContent = mensajes[indiceMensaje];
-});
+function changeMessage() {
+  messageIndex = (messageIndex + 1) % messages.length;
+  messageElement.textContent = messages[messageIndex];
+}
 
-temaBtn.addEventListener('click', () => {
+function toggleTheme() {
   document.body.classList.toggle('dark');
-});
+}
 
-function actualizarHora() {
-  const ahora = new Date();
-  clock.textContent = ahora.toLocaleTimeString('es-ES', {
+function updateClock() {
+  const currentDate = new Date();
+
+  clockElement.textContent = currentDate.toLocaleTimeString('es-ES', {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit'
   });
 
-  const horas = ahora.getHours() % 12;
-  const minutos = ahora.getMinutes();
-  const segundos = ahora.getSeconds();
+  const hours = currentDate.getHours() % 12;
+  const minutes = currentDate.getMinutes();
+  const seconds = currentDate.getSeconds();
 
-  const rotationHours = ((horas + (minutos / 60) + (segundos / 3600)) * 30);
-  const rotationMinutes = ((minutos + (segundos / 60)) * 6);
-  const rotationSeconds = segundos * 6;
+  const rotationHours = (hours + minutes / 60 + seconds / 3600) * 30;
+  const rotationMinutes = (minutes + seconds / 60) * 6;
+  const rotationSeconds = seconds * 6;
 
   hourHand.style.transform = `translateX(-50%) rotate(${rotationHours}deg)`;
   minuteHand.style.transform = `translateX(-50%) rotate(${rotationMinutes}deg)`;
   secondHand.style.transform = `translateX(-50%) rotate(${rotationSeconds}deg)`;
 }
 
-actualizarHora();
-setInterval(actualizarHora, 1000);
+changeMessageButton.addEventListener('click', changeMessage);
+themeButton.addEventListener('click', toggleTheme);
+
+updateClock();
+setInterval(updateClock, 1000);

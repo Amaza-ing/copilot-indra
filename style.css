@@ -19,6 +19,7 @@ body.dark {
   --muted: #d1d5db;
   --border: rgba(139, 92, 246, 0.2);
   --shadow: 0 20px 45px rgba(15, 23, 42, 0.45);
+  background: linear-gradient(135deg, var(--bg-dark), #1f2937);
 }
 
 * {
@@ -35,10 +36,6 @@ body {
   background: linear-gradient(135deg, var(--bg), #e0e7ff);
   color: var(--text);
   transition: background 0.3s ease, color 0.3s ease;
-}
-
-body.dark {
-  background: linear-gradient(135deg, var(--bg-dark), #1f2937);
 }
 
 .container {
@@ -280,19 +277,19 @@ body.dark .analog-clock {
   transform: translateX(-50%) rotate(0deg);
 }
 
-.hour {
+.hour-hand {
   width: 4px;
   height: 28%;
   background: var(--text);
 }
 
-.minute {
+.minute-hand {
   width: 3px;
   height: 36%;
   background: var(--primary);
 }
 
-.second {
+.second-hand {
   width: 2px;
   height: 42%;
   background: #ef4444;
