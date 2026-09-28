@@ -1,6 +1,8 @@
 const messageElement = document.getElementById('message');
 const changeMessageButton = document.getElementById('changeMessageButton');
 const themeButton = document.getElementById('themeButton');
+const themeMenu = document.getElementById('themeMenu');
+const themeOptions = document.querySelectorAll('.palette-option');
 const clockElement = document.getElementById('clock');
 const hourHand = document.querySelector('.hour-hand');
 const minuteHand = document.querySelector('.minute-hand');
@@ -19,8 +21,21 @@ function changeMessage() {
   messageElement.textContent = messages[messageIndex];
 }
 
-function toggleTheme() {
-  document.body.classList.toggle('dark');
+function applyTheme(themeName) {
+  document.body.dataset.theme = themeName;
+
+  themeOptions.forEach((option) => {
+    const isActive = option.dataset.theme === themeName;
+    option.classList.toggle('active', isActive);
+    option.setAttribute('aria-checked', String(isActive));
+  });
+
+  localStorage.setItem('miweb-theme', themeName);
+}
+
+function toggleThemeMenu() {
+  const isOpen = themeMenu.classList.toggle('open');
+  themeButton.setAttribute('aria-expanded', String(isOpen));
 }
 
 function updateClock() {
@@ -46,7 +61,28 @@ function updateClock() {
 }
 
 changeMessageButton.addEventListener('click', changeMessage);
-themeButton.addEventListener('click', toggleTheme);
+themeButton.addEventListener('click', toggleThemeMenu);
+
+themeOptions.forEach((option) => {
+  option.addEventListener('click', () => {
+    applyTheme(option.dataset.theme);
+    themeMenu.classList.remove('open');
+    themeButton.setAttribute('aria-expanded', 'false');
+  });
+});
+
+document.addEventListener('click', (event) => {
+  const clickedInsideThemeMenu = themeMenu.contains(event.target);
+  const clickedThemeButton = themeButton.contains(event.target);
+
+  if (!clickedInsideThemeMenu && !clickedThemeButton) {
+    themeMenu.classList.remove('open');
+    themeButton.setAttribute('aria-expanded', 'false');
+  }
+});
+
+const savedTheme = localStorage.getItem('miweb-theme') || 'default';
+applyTheme(savedTheme);
 
 updateClock();
 setInterval(updateClock, 1000);

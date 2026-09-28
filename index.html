@@ -28,7 +28,35 @@
           </p>
           <div class="actions">
             <button id="changeMessageButton" class="primary-btn">Cambiar mensaje</button>
-            <button id="themeButton" class="secondary-btn">Cambiar tema</button>
+
+            <div class="theme-controls">
+              <button id="themeButton" class="secondary-btn" type="button" aria-expanded="false" aria-controls="themeMenu">
+                Cambiar tema
+              </button>
+
+              <div id="themeMenu" class="theme-menu" role="menu" aria-label="Selector de temas">
+                <button class="palette-option active" type="button" data-theme="default" role="menuitem">
+                  <span class="color-swatch default-swatch"></span>
+                  Por defecto
+                </button>
+                <button class="palette-option" type="button" data-theme="ocean" role="menuitem">
+                  <span class="color-swatch ocean-swatch"></span>
+                  Océano
+                </button>
+                <button class="palette-option" type="button" data-theme="sunset" role="menuitem">
+                  <span class="color-swatch sunset-swatch"></span>
+                  Atardecer
+                </button>
+                <button class="palette-option" type="button" data-theme="forest" role="menuitem">
+                  <span class="color-swatch forest-swatch"></span>
+                  Bosque
+                </button>
+                <button class="palette-option" type="button" data-theme="midnight" role="menuitem">
+                  <span class="color-swatch midnight-swatch"></span>
+                  Medianoche
+                </button>
+              </div>
+            </div>
           </div>
           <p id="clock" class="clock"></p>
         </div>
