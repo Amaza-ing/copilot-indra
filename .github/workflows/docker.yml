@@ -1,0 +1,21 @@
+name: Docker smoke test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  docker-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t mi-web:test .
+      - name: Start container and verify page
+        run: |
+          docker run --detach --name mi-web-smoke-test --publish 8080:80 mi-web:test
+          curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://localhost:8080/ | grep -q '<title>Mi Página Simple</title>'
+      - name: Stop container
+        if: always()
+        run: docker rm --force mi-web-smoke-test || true
