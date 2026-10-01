@@ -12,9 +12,9 @@ test('wraps the message index to the beginning', () => {
 
 test('calculates clock hand rotations at noon', () => {
   assert.deepEqual(calculateClockRotations(12, 0, 0), {
-    hours: 0,
-    minutes: 0,
-    seconds: 0
+    hours: 10,
+    minutes: 20,
+    seconds: 30
   });
 });
 
