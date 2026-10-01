@@ -1,3 +1,5 @@
+import { calculateClockRotations, getNextMessageIndex } from './app-logic.js';
+
 const messageElement = document.getElementById('message');
 const changeMessageButton = document.getElementById('changeMessageButton');
 const themeButton = document.getElementById('themeButton');
@@ -17,7 +19,7 @@ const messages = [
 let messageIndex = 0;
 
 function changeMessage() {
-  messageIndex = (messageIndex + 1) % messages.length;
+  messageIndex = getNextMessageIndex(messageIndex, messages.length);
   messageElement.textContent = messages[messageIndex];
 }
 
@@ -47,17 +49,15 @@ function updateClock() {
     second: '2-digit'
   });
 
-  const hours = currentDate.getHours() % 12;
-  const minutes = currentDate.getMinutes();
-  const seconds = currentDate.getSeconds();
+  const { hours, minutes, seconds } = calculateClockRotations(
+    currentDate.getHours(),
+    currentDate.getMinutes(),
+    currentDate.getSeconds()
+  );
 
-  const rotationHours = (hours + minutes / 60 + seconds / 3600) * 30;
-  const rotationMinutes = (minutes + seconds / 60) * 6;
-  const rotationSeconds = seconds * 6;
-
-  hourHand.style.transform = `translateX(-50%) rotate(${rotationHours}deg)`;
-  minuteHand.style.transform = `translateX(-50%) rotate(${rotationMinutes}deg)`;
-  secondHand.style.transform = `translateX(-50%) rotate(${rotationSeconds}deg)`;
+  hourHand.style.transform = `translateX(-50%) rotate(${hours}deg)`;
+  minuteHand.style.transform = `translateX(-50%) rotate(${minutes}deg)`;
+  secondHand.style.transform = `translateX(-50%) rotate(${seconds}deg)`;
 }
 
 changeMessageButton.addEventListener('click', changeMessage);

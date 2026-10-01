@@ -20,9 +20,7 @@ Una página web sencilla creada con HTML, CSS y JavaScript. Incluye un diseño m
 
 ## Cómo abrir el proyecto
 
-1. Abre la carpeta del proyecto en tu editor.
-2. Haz doble clic en `index.html` o sirve la carpeta con un servidor local.
-3. Si prefieres usar un servidor local, ejecuta:
+Sirve la carpeta con un servidor local para que el navegador pueda cargar los módulos JavaScript. Ejecuta:
 
 ```bash
 python -m http.server 8000
@@ -47,3 +45,13 @@ Puedes editar:
 - HTML5
 - CSS3
 - JavaScript
+
+## Tests
+
+Se usa el runner integrado de Node.js, sin dependencias adicionales. Necesitas Node.js 18 o superior.
+
+```bash
+npm test
+```
+
+Los tests cubren el avance circular de los mensajes y los cálculos de rotación del reloj.
